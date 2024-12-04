@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import DynamicButton from "./components/DynamicButton";
+import "./App.css";
 
-function App() {
+const App: React.FC = () => {
+  const [buttonType, setButtonType] = useState<"primary" | "secondary">("primary");
+
+  const toggleButtonType = () => {
+    setButtonType((prev) => (prev === "primary" ? "secondary" : "primary"));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Dynamic Komponent Misoli</h1>
+      <DynamicButton
+        color="red"
+        label="Dynamic Tugma"
+        onClick={toggleButtonType}
+        type={buttonType}
+      />
+      <p>Hozirgi tugma turi: {buttonType}</p>
     </div>
   );
-}
+};
 
 export default App;
